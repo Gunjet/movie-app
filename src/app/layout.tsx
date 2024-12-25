@@ -58,12 +58,12 @@ export default function RootLayout({
         </div>
       </footer> */}
 
-      <footer className="w-full h-[308px] bg-[#4338CA] absolute bottom-0 left-0 flex justify-center items-center">
+      <footer className="w-full h-[308px] bg-[#4338CA] bottom-0 left-0 flex justify-center items-center">
         <div className='w-[335px] h-[228px] flex flex-col justify-between'>
           <div className="w-[247px] h-[52px] text-white flex flex-col gap-3 ">
             <div className="flex gap-2">
              <img src='/film.png' className='w-[20px] h-[20px]'/>
-             <p className='text-[16px] italic'>Movie Z</p>
+             <p className='text-[16px] font-bold italic'>Movie Z</p>
             </div>
             <p className='text-[14px]'>© 2024 Movie Z. All Rights Reserved.</p>
           </div>
