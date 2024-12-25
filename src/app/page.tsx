@@ -74,7 +74,8 @@
 import Image from "next/image";
 import { CiSearch } from "react-icons/ci";
 import { PiMoonThin } from "react-icons/pi";
-import { IoStar } from "react-icons/io5";
+import { IoStar } from "react-icons/io5"; 
+import { MdArrowForwardIos } from "react-icons/md";
 
 export const API_KEY = 'f39690f9830ce804b7894ac1def4f7e9';
 
@@ -142,6 +143,11 @@ export default async function Home() {
             <PiMoonThin className="w-[16px] h-[16px] text-black" />
           </button> 
         </div> 
+      </div>
+      <div className="flex text-[24px] justify-between">
+        <p>Top rated</p>
+        <p className='text-[14px]'>See more</p>
+        <MdArrowForwardIos />
       </div>
 
       <div className="flex flex-wrap justify-center gap-5 p-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:px-10">
