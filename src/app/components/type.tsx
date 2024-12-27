@@ -1,7 +1,7 @@
-export type Movie = {
-    title: string;
-    poster_path?: string;
-    backdrop_path?: string;
-    vote_average: number;
-  };
-  
+export interface Movie {
+  title: string;
+  vote_average: number;
+  poster_path: string;
+  backdrop_path: string;
+  id: number;
+}
