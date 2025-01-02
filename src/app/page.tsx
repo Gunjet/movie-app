@@ -9,9 +9,9 @@ export default function Home() {
   return(
     <div>
       <Header />
-      <Section title='Popular' endpoint="popular"/>
-      <Section title='Upcoming' endpoint="upcoming"/>
-      <Section title='Top rated' endpoint="top_rated"/>
+      <Section number={10} title='Popular' endpoint="popular"/>
+      <Section number={10} title='Upcoming' endpoint="upcoming"/>
+      <Section number={10} title='Top rated' endpoint="top_rated"/>
     </div>
   )
 }
