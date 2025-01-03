@@ -1,50 +1,3 @@
-// 'use client'
-
-// import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover"
-// import { Badge, Link } from "lucide-react"
-// import { useState, useEffect } from "react"
-// import { options } from "./section"
-
-// type GenreType= {
-//   id: number;
-//   name: string;
-// }
-
-// export const FilterGenre= () => {
-//   const [genres, setGenres] = useState([])
-
-//   useEffect(() => {
-//     const fetchGenres = async () => {
-//       const response = await fetch (
-//         `https://api.themoviedb.org/3/genre/movie/list?language=en`, 
-//         options
-//       );
-//       const data= await response.json();
-//       setGenres(data.genres);
-//     };
-//     fetchGenres();
-//   }, [])
-
-//   const onClickGenre = (genreId: number) => {
-//   }
-
-//   return ( 
-//     <Popover>
-//       <PopoverTrigger>
-//       <div className='border rounded-lg p-2 w-[50px]'>Genre</div>
-//       </PopoverTrigger>
-//       <PopoverContent>
-//         {genres?.map((genre: GenreType) => (
-//           <Link href="/search?with_genres=16">
-//             <Badge key={`genre-${genre.id}`}>{genre?.name}</Badge>
-//           </Link>
-//          )
-//         )
-//        }
-//       </PopoverContent>
-//     </Popover>
-//   )
-// }
 
 'use client'
 
@@ -52,6 +5,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover
 import { Badge, Link } from "lucide-react"
 import { useState, useEffect } from "react"
 import { options } from "./section"
+import { CiSearch } from "react-icons/ci"
 
 type GenreType = {
   id: number;
@@ -77,23 +31,20 @@ export const FilterGenre = () => {
     console.log(`Selected Genre ID: ${genreId}`);
   }
 
+  console.log(genres)
   return ( 
     <Popover>
-      <PopoverTrigger>
-        <div className='border rounded-lg p-2 w-[50px] text-center cursor-pointer'>
-          Genre
-        </div>
+      <PopoverTrigger className="p-2 rounded-md border-[1px] border-[#E4E4E7]">
+       <CiSearch className="w-[16px] h-[16px] text-black" />
       </PopoverTrigger>
       <PopoverContent>
         <div className="p-2">
           {genres?.map((genre: GenreType) => (
             <Link
               key={`genre-${genre.id}`}  
-              href={`/search?with_genres=${genre.id}`}
-              className="block mb-1"
-              onClick={() => onClickGenre(genre.id)}
+              href={`search/${genre.id}`}
             >
-              <Badge>{genre.name}</Badge>
+              <div>{genre.name}</div>
             </Link>
           ))}
         </div>
