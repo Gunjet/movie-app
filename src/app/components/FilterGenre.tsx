@@ -1,11 +1,12 @@
 
 'use client'
 
-import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover"
-import { Badge, Link } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 import { useState, useEffect } from "react"
 import { options } from "./section"
 import { CiSearch } from "react-icons/ci"
+import Link from "next/link"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 
 type GenreType = {
   id: number;
@@ -28,7 +29,7 @@ export const FilterGenre = () => {
   }, [])
 
   const onClickGenre = (genreId: number) => {
-    console.log(`Selected Genre ID: ${genreId}`);
+
   }
 
   console.log(genres)
@@ -37,17 +38,16 @@ export const FilterGenre = () => {
       <PopoverTrigger className="p-2 rounded-md border-[1px] border-[#E4E4E7]">
        <CiSearch className="w-[16px] h-[16px] text-black" />
       </PopoverTrigger>
-      <PopoverContent>
-        <div className="p-2">
+      <PopoverContent >
+        <p className='text-[24px] font-semibold'>Genres</p> 
+        <p>See lists of movies by genre</p>
+        <p className="w-[290px] h-[1px] bg-[#E4E4E7] mt-4" ></p>
           {genres?.map((genre: GenreType) => (
-            <Link
-              key={`genre-${genre.id}`}  
-              href={`search/${genre.id}`}
-            >
-              <div>{genre.name}</div>
-            </Link>
+          <Link href={`/movie/${genre.id}`}>
+              <Badge className='mr-2 mt-3 bg-white text-black rounded-xl border-[#E4E4E7]'>             
+              {genre.name}</Badge> 
+          </Link>
           ))}
-        </div>
       </PopoverContent>
     </Popover>
   )

@@ -35,7 +35,6 @@ type Props = {
   <div className="flex justify-between p-4">
     <div className="flex flex-col">
       <h1 className="text-[24px] font-semibold">{data.title}</h1>
-      {/* <p>{data.release_date}</p> */}
       <p>{data.release_date} · PG · {hour.toFixed(0)}h {minute}m</p>
     </div>
     <div className="flex items-center">

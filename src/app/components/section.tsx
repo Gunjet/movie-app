@@ -20,7 +20,7 @@ export const options = {
   },
 };
 
-export const Section = async ({ title, endpoint, moreLink,number}: Props) => {
+export const Section = async ({ title, endpoint, moreLink, number}: Props) => {
     const res = await fetch(
       `https://api.themoviedb.org/3/movie/${endpoint}?language=en-US&page=1`,
       options

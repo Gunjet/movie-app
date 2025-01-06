@@ -25,5 +25,3 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
     </Link>
   );
 };
-
-
