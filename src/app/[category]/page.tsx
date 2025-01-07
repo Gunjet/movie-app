@@ -36,8 +36,8 @@ export default function Page() {
 
   return (
     <>
-      <h1 className="font-bold">{params.category}</h1>
-      <div className="p-4 grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:px-10">
+      <h1 className="font-semibold text-[24px] p-5">{params.category}</h1>
+      <div className="p-5 grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:px-10">
         {movies?.map((movie) => (
           <MovieCard movie={movie} key={movie.id} />
         ))}

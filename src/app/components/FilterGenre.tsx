@@ -43,7 +43,7 @@ export const FilterGenre = () => {
         <p>See lists of movies by genre</p>
         <p className="w-[290px] h-[1px] bg-[#E4E4E7] mt-4" ></p>
           {genres?.map((genre: GenreType) => (
-          <Link href={`/movie/${genre.id}`}>
+          <Link href={`/movie/${genre.id}`} key={genre.id}>
               <Badge className='mr-2 mt-3 bg-white text-black rounded-xl border-[#E4E4E7]'>             
               {genre.name}</Badge> 
           </Link>
