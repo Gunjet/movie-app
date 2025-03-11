@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { useState, useEffect } from "react"
 import { options } from "./section"
 import { CiSearch } from "react-icons/ci"
+import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 
@@ -32,11 +33,10 @@ export const FilterGenre = () => {
 
   }
 
-  console.log(genres)
   return ( 
     <Popover>
       <PopoverTrigger className="p-2 rounded-md border-[1px] border-[#E4E4E7]">
-       <CiSearch className="w-[16px] h-[16px] text-black" />
+       <IoIosArrowDown className="w-[16px] h-[16px] text-black" />
       </PopoverTrigger>
       <PopoverContent >
         <p className='text-[24px] font-semibold'>Genres</p> 

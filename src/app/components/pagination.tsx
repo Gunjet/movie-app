@@ -1,6 +1,7 @@
 
 'use client';
-
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
 export type PageInfo = {
@@ -40,26 +41,37 @@ export const PaginationControls = ({ pageInfo }: { pageInfo: PageInfo }) => {
   const visiblePages = getVisiblePages(pageInfo.currentPage, pageInfo.totalPages);
 
   return (
-    <div className="flex gap-4 mx-10">
+    <div className="flex gap-4 justify-center items-center my-8">
       {pageInfo.currentPage > 1 && (
-        <div onClick={() => onChangePage(pageInfo.currentPage - 1)} className="cursor-pointer">
-          Prev
+        <div
+          onClick={() => onChangePage(pageInfo.currentPage - 1)}
+          className="cursor-pointer flex items-center"
+        >
+          <MdOutlineKeyboardArrowLeft />
         </div>
       )}
       {visiblePages.map((page) => (
         <div
           key={page}
           onClick={() => onChangePage(page)}
-          className={pageInfo.currentPage === page ? "font-semibold text-blue-500" : "cursor-pointer"}
+          className={`${
+            pageInfo.currentPage === page
+              ? "py-2 px-4 border rounded-md flex items-center"
+              : "cursor-pointer flex items-center"
+          }`}
         >
           {page}
         </div>
       ))}
       {pageInfo.currentPage < pageInfo.totalPages && pageInfo.currentPage < 500 && (
-        <div onClick={() => onChangePage(pageInfo.currentPage + 1)} className="cursor-pointer">
-          Next
+        <div
+          onClick={() => onChangePage(pageInfo.currentPage + 1)}
+          className="cursor-pointer flex items-center"
+        >
+          <MdOutlineKeyboardArrowRight />
         </div>
       )}
     </div>
   );
+  
 };

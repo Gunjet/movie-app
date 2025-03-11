@@ -1,15 +1,16 @@
-
 'use client'
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { TiStarFullOutline } from 'react-icons/ti'; 
-
+import { LuPlay } from "react-icons/lu";
 const API_KEY = 'f39690f9830ce804b7894ac1def4f7e9';
 
 const NowPlaying = () => {
   const [movies, setMovies] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [trailerUrl, setTrailerUrl] = useState<string | null>(null);
 
+  // Fetching now playing movies
   useEffect(() => {
     const fetchMovies = async () => {
       const response = await fetch(
@@ -22,6 +23,7 @@ const NowPlaying = () => {
     fetchMovies();
   }, []);
 
+  // Handling movie slide transition
   useEffect(() => {
     if (movies.length) {
       const intervalId = setInterval(() => {
@@ -32,8 +34,21 @@ const NowPlaying = () => {
     }
   }, [movies]);
 
-  const displayedMovies = movies.slice(currentIndex, currentIndex + 3);
+  // Fetching trailer for the current movie
+  const fetchTrailer = async (movieId: number) => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`
+    );
+    const data = await response.json();
+    const trailer = data.results.find((video: any) => video.type === 'Trailer');
+    if (trailer) {
+      setTrailerUrl(`https://www.youtube.com/watch?v=${trailer.key}`);
+    } else {
+      setTrailerUrl(null); // No trailer found
+    }
+  };
 
+  const displayedMovies = movies.slice(currentIndex, currentIndex + 3);
   if (displayedMovies.length < 3 && movies.length >= 3) {
     displayedMovies.push(...movies.slice(0, 3 - displayedMovies.length));
   }
@@ -65,7 +80,7 @@ const NowPlaying = () => {
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-2.5 h-2.5 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-400'}`}
+              className={`w-[1.5vw] h-[1.5vw] rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-400'}`}
             />
           ))}
         </div>
@@ -85,12 +100,21 @@ const NowPlaying = () => {
         )}
       </div>
       <div className='px-5'>
-      {movies[currentIndex]?.overview && (
+        {movies[currentIndex]?.overview && (
           <div className="mb-6 mt-2 text-sm text-gray-700">
             <p>{movies[currentIndex]?.overview}</p>
           </div>
         )}
       </div>
+
+      {trailerUrl && (
+      <a href={trailerUrl} target="_blank" rel="noopener noreferrer"
+        onClick={() => fetchTrailer(movies[currentIndex].id)}
+        className='bg-black rounded-md border px-4 w-[145px] py-2 text-white ml-5 text-[14px] flex items-center gap-3'>
+         <LuPlay />
+         Watch Trailer
+      </a>
+      )}
     </div>
   );
 };
