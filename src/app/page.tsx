@@ -3,9 +3,12 @@ import Image from "next/image";
 import { Section } from "./components/section";
 import NowPlaying from "./components/FeaturedMovies";
 
-export const API_KEY = 'f39690f9830ce804b7894ac1def4f7e9';
+const API_KEY = process.env.API_KEY;
 
 export default function Home() {
+  if(!API_KEY){
+  return <div>No api key</div>
+}
   return(
     <div>
       <NowPlaying/>

@@ -72,12 +72,12 @@ import { options, Section } from "@/app/components/section";
 import { TiStarFullOutline } from "react-icons/ti";
 
 type Props = {
-  params: { id: number };
+  params: Promise<{ id: number }>;
 };
 
 export default async function MovieDetail({ params }: Props) {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${params.id}?api_key=${options}&language=en-US`,
+    `https://api.themoviedb.org/3/movie/${(await params).id}?api_key=${options}&language=en-US`,
     options
   );
 
@@ -128,12 +128,11 @@ export default async function MovieDetail({ params }: Props) {
         </div>
       </div>
 
-      {/* Update this part to show recommendations based on movie ID */}
       <Section
         number={2}
         title="More like this"
-        endpoint={`${params.id}/recommendations`}
-        moreLink={`/movie/${params.id}/recommendations`}
+        endpoint={`${(await params).id}/recommendations`}
+        moreLink={`/movie/${(await params).id}/recommendations`}
       />
     </div>
   );

@@ -10,7 +10,6 @@ const NowPlaying = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [trailerUrl, setTrailerUrl] = useState<string | null>(null);
 
-  // Fetching now playing movies
   useEffect(() => {
     const fetchMovies = async () => {
       const response = await fetch(
@@ -22,8 +21,6 @@ const NowPlaying = () => {
 
     fetchMovies();
   }, []);
-
-  // Handling movie slide transition
   useEffect(() => {
     if (movies.length) {
       const intervalId = setInterval(() => {
@@ -34,7 +31,6 @@ const NowPlaying = () => {
     }
   }, [movies]);
 
-  // Fetching trailer for the current movie
   const fetchTrailer = async (movieId: number) => {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`
@@ -44,7 +40,7 @@ const NowPlaying = () => {
     if (trailer) {
       setTrailerUrl(`https://www.youtube.com/watch?v=${trailer.key}`);
     } else {
-      setTrailerUrl(null); // No trailer found
+      setTrailerUrl(null); 
     }
   };
 
@@ -93,7 +89,7 @@ const NowPlaying = () => {
         </div>
         {movies[currentIndex]?.vote_average && (
           <div className="flex items-center space-x-1">
-            <TiStarFullOutline size={16} className="text-yellow-300" />
+            <TiStarFullOutline size={16} className="text-yellow-300"/>
             <p className="font-semibold text-[18px]">{movies[currentIndex]?.vote_average.toFixed(1)}</p>
             <p className="text-[#71717A] text-[18px]">/10</p>
           </div>
@@ -120,4 +116,3 @@ const NowPlaying = () => {
 };
 
 export default NowPlaying;
-
