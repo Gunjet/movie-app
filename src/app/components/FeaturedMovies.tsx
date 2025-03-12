@@ -60,7 +60,7 @@ const NowPlaying = () => {
             <div key={movie.id} className="w-full flex-shrink-0">
               <div className="relative">
                 <Image
-                  src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
+                  src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
                   alt={movie.title}
                   width={1000}
                   height={500}

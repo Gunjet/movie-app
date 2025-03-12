@@ -104,14 +104,14 @@ export default async function MovieDetail({ params }: Props) {
       </div>
 
       <img
-        src={`https://image.tmdb.org/t/p/w500/${imgBackdropPath}`}
+        src={`https://image.tmdb.org/t/p/original/${imgBackdropPath}`}
         className="w-full h-auto"
       />
 
       <div className="flex p-5 gap-10 mt-3">
         <img
           className="w-[100px] h-[148px] object-cover"
-          src={`https://image.tmdb.org/t/p/w500/${imgPosterPath}`}
+          src={`https://image.tmdb.org/t/p/original/${imgPosterPath}`}
         />
         <div className="flex flex-col w-[201px]">
           <div className="flex gap-3 mb-5 flex-wrap">
