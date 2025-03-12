@@ -10,7 +10,7 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
  <Link href={`/movie/${movie.id}`}>
     <div className="rounded-lg bg-gray-100">
       <img
-        src={`https://image.tmdb.org/t/p/w500/${imgPath}`}
+        src={`https://image.tmdb.org/t/p/original/${imgPath}`}
         className="rounded-t-lg"
       />
       <div className="p-2">
