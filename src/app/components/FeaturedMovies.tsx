@@ -1,8 +1,9 @@
 'use client'
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { TiStarFullOutline } from 'react-icons/ti'; 
-import { LuPlay } from "react-icons/lu";
+import { TiStarFullOutline } from 'react-icons/ti';
+import { LuPlay } from 'react-icons/lu';
+
 const API_KEY = 'f39690f9830ce804b7894ac1def4f7e9';
 
 const NowPlaying = () => {
@@ -21,11 +22,12 @@ const NowPlaying = () => {
 
     fetchMovies();
   }, []);
+
   useEffect(() => {
-    if (movies.length) {
+    if (movies.length > 0) {
       const intervalId = setInterval(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % movies.length);
-      }, 3000);
+      }, 3000); 
 
       return () => clearInterval(intervalId); 
     }
@@ -36,7 +38,8 @@ const NowPlaying = () => {
       `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`
     );
     const data = await response.json();
-    const trailer = data.results.find((video: any) => video.type === 'Trailer');
+
+    const trailer = data.results?.find((video: any) => video.type === 'Trailer');
     if (trailer) {
       setTrailerUrl(`https://www.youtube.com/watch?v=${trailer.key}`);
     } else {
@@ -48,6 +51,12 @@ const NowPlaying = () => {
   if (displayedMovies.length < 3 && movies.length >= 3) {
     displayedMovies.push(...movies.slice(0, 3 - displayedMovies.length));
   }
+
+  useEffect(() => {
+    if (movies[currentIndex]?.id && !trailerUrl) {
+      fetchTrailer(movies[currentIndex].id);
+    }
+  }, [currentIndex, movies, trailerUrl]); 
 
   return (
     <div className="relative">
@@ -89,7 +98,7 @@ const NowPlaying = () => {
         </div>
         {movies[currentIndex]?.vote_average && (
           <div className="flex items-center space-x-1">
-            <TiStarFullOutline size={16} className="text-yellow-300"/>
+            <TiStarFullOutline size={16} className="text-yellow-300" />
             <p className="font-semibold text-[18px]">{movies[currentIndex]?.vote_average.toFixed(1)}</p>
             <p className="text-[#71717A] text-[18px]">/10</p>
           </div>
@@ -103,14 +112,26 @@ const NowPlaying = () => {
         )}
       </div>
 
-      {trailerUrl && (
-      <a href={trailerUrl} target="_blank" rel="noopener noreferrer"
-        onClick={() => fetchTrailer(movies[currentIndex].id)}
-        className='bg-black rounded-md border px-4 w-[145px] py-2 text-white ml-5 text-[14px] flex items-center gap-3'>
-         <LuPlay />
-         Watch Trailer
-      </a>
-      )}
+      <div className="px-5">
+        <button
+          onClick={() => fetchTrailer(movies[currentIndex]?.id)}
+          className="bg-black rounded-md border px-4 w-[145px] py-2 text-white text-[14px] flex items-center gap-3 mb-10"
+        >
+          <LuPlay />
+          {trailerUrl ? (
+            <a
+              href={trailerUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center"
+            >
+              Watch Trailer
+            </a>
+          ) : (
+            "No Trailer Available"
+          )}
+        </button>
+      </div>
     </div>
   );
 };

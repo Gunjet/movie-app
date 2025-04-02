@@ -105,9 +105,9 @@ export default async function MovieDetail({ params }: Props) {
 
       <img
         src={`https://image.tmdb.org/t/p/original/${imgBackdropPath}`}
-        className="w-full h-auto"
+        className="w-full h-auto object-cover"
       />
-
+      {/* <div className="bg-black opacity-60 absolute top-0 bottom-0 left-0 right-0"></div> */}
       <div className="flex p-5 gap-10 mt-3">
         <img
           className="w-[100px] h-[148px] object-cover"

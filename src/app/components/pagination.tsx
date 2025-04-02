@@ -39,7 +39,6 @@ export const PaginationControls = ({ pageInfo }: { pageInfo: PageInfo }) => {
   };
 
   const visiblePages = getVisiblePages(pageInfo.currentPage, pageInfo.totalPages);
-
   return (
     <div className="flex gap-4 justify-center items-center my-8">
       {pageInfo.currentPage > 1 && (

@@ -1,10 +1,12 @@
 import { PiMoonThin } from "react-icons/pi";
-import { FilterGenre } from "./FilterGenre";
 import { CiSearch } from "react-icons/ci"
+import { IoClose } from "react-icons/io5";
+import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
 
 export default function Header(){
     return(
+      <>
         <div className="flex items-center gap-2 w-[375px] h-[59px] p-5 justify-between">
         <Link href="/">
         <div className="flex gap-2">
@@ -15,15 +17,29 @@ export default function Header(){
         </div>
         </Link>   
         <div className="flex gap-3">
-          {/* <FilterGenre/> */}
-          <button className="p-2 rounded-md border-[1px] border-[#E4E4E7]">
+          <button className="p-2 rounded-lg border-[1px] border-[#E4E4E7] cursor-pointer hover:bg-[#F4F4F5]">
            <CiSearch className="w-[16px] h-[16px] text-black" />
           </button>
-          <button className="p-2 rounded-md border-[1px] border-[#E4E4E7]">
+          <button className="p-2 rounded-lg border-[1px] border-[#E4E4E7] cursor-pointer hover:bg-[#F4F4F5]">
             <PiMoonThin className="w-[16px] h-[16px] text-black" />
           </button> 
         </div> 
       </div>
+      <div className="flex items-center gap-2 w-full h-[59px] p-5 justify-between">
+         <button className="p-2 rounded-lg border-[1px] border-[#E4E4E7] cursor-pointer hover:bg-[#F4F4F5]">
+           <IoIosArrowDown className="w-[16px] h-[16px] text-black" />
+         </button>
+
+         <div>
+           <CiSearch/>
+           <input placeholder="Search"></input>
+         </div>
+
+         <button className="p-2 rounded-lg cursor-pointer hover:bg-[#F4F4F5]">
+           <IoClose className="w-[16px] h-[16px] text-black" />
+         </button>
+      </div>
+      </>
     )
 }
 
