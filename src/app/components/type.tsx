@@ -5,3 +5,6 @@ export interface Movie {
   backdrop_path: string;
   id: number;
 }
+export interface SearchDropdownProps {
+  closeDropdown: () => void;
+}

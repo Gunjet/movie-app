@@ -33,7 +33,7 @@ export const Section = async ({ title, endpoint, moreLink, number }: Props) => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="flex text-[24px] justify-between w-[335px] h-[36px] my-3">
+      <div className="flex text-[24px] justify-between w-full p-5 md:p-8 lg:mb-5 lg:px-12 xl:mb-7 xl:px-16 h-[36px] my-3">
         <p className="font-semibold">{title}</p>
         <Link href={href}>
           <div className="flex items-center gap-2 p-3">
@@ -42,7 +42,7 @@ export const Section = async ({ title, endpoint, moreLink, number }: Props) => {
           </div>
         </Link>
       </div>
-      <div className="flex flex-wrap justify-center gap-5 p-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:px-10">
+      <div className="flex flex-wrap justify-center gap-5 p-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:w-[97%] lg:px-10">
         {movies.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}

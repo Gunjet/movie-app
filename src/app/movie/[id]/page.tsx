@@ -91,15 +91,15 @@ export default async function MovieDetail({ params }: Props) {
 
   return (
     <div>
-      <div className="flex justify-between p-4">
+      <div className="flex justify-between p-5 md:p-8 lg:px-12 xl:px-16">
         <div className="flex flex-col">
-          <h1 className="text-[24px] font-semibold">{data.title}</h1>
+          <h1 className="text-[24px] md:text-[29px] lg:text-[34px] font-semibold">{data.title}</h1>
           <p>{data.release_date} · PG · {hour.toFixed(0)}h {minute}m</p>
         </div>
         <div className="flex items-center">
-          <TiStarFullOutline size={16} className="text-yellow-300" />
-          <p className="font-semibold">{data.vote_average.toFixed(1)}</p>
-          <p className="text-[#71717A]">/10</p>
+          <TiStarFullOutline className="text-yellow-300 text-[1.1rem] md:text-[1.4rem] lg:text-[1.7] xl:text-[2rem] md:mr-2 lg:mr-3" />
+          <p className="font-semibold text-[1.1rem] md:text-[1.4rem] lg:text-[1.7]">{data.vote_average.toFixed(1)}</p>
+          <p className="text-[#71717A] text-[1.1rem] md:text-[1.4rem] lg:text-[1.7]">/10</p>
         </div>
       </div>
 
@@ -107,7 +107,6 @@ export default async function MovieDetail({ params }: Props) {
         src={`https://image.tmdb.org/t/p/original/${imgBackdropPath}`}
         className="w-full h-auto object-cover"
       />
-      {/* <div className="bg-black opacity-60 absolute top-0 bottom-0 left-0 right-0"></div> */}
       <div className="flex p-5 gap-10 mt-3">
         <img
           className="w-[100px] h-[148px] object-cover"
